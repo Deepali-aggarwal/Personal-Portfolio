@@ -13,11 +13,11 @@ const PORT = process.env.PORT || 5000;
 // Enable CORS for frontend
 const allowedOrigins = process.env.FRONTEND_URL
   ? process.env.FRONTEND_URL.split(',')
-  : ['http://localhost:3000', 'http://localhost:1234', 'http://localhost:5173'];
+  : ['http://localhost:3000', 'http://localhost:1234', 'http://localhost:5173', 'https://portfolio-personal-eight-rho.vercel.app'];
 
 app.use(cors({
   origin: (origin, callback) => {
-    if (!origin || allowedOrigins.includes(origin) || process.env.NODE_ENV !== 'production') {
+    if (!origin || allowedOrigins.includes(origin) || origin.endsWith('.vercel.app') || process.env.NODE_ENV !== 'production') {
       callback(null, true);
     } else {
       callback(new Error('Not allowed by CORS'));
