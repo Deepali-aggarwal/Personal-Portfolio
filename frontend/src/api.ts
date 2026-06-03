@@ -1,4 +1,4 @@
-const API_BASE = process.env.API_URL || window.location.hostname === 'localhost' ? 'http://localhost:5000' : 'https://personal-portfolio-vz8s.onrender.com';
+const API_BASE = window.location.hostname === 'localhost' ? 'http://localhost:5000' : 'https://personal-portfolio-vz8s.onrender.com';
 
 export async function submitContact(data: { name: string; email: string; subject: string; message: string }) {
   const res = await fetch(`${API_BASE}/api/contact`, {
