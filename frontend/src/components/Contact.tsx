@@ -60,7 +60,11 @@ export default function Contact() {
       setFormData({ name: '', email: '', subject: '', message: '' });
     } catch (err: any) {
       setStatus('error');
-      setStatusMsg(err?.message || err?.errors?.[0]?.msg || 'Failed to send message.');
+      if (err?.errors) {
+        setStatusMsg(err.errors.map((e: any) => e.msg).join('. '));
+      } else {
+        setStatusMsg(err?.message || 'Failed to send message.');
+      }
     }
   };
 
@@ -156,6 +160,8 @@ export default function Contact() {
                   value={formData.name}
                   onChange={handleChange}
                   required
+                  minLength={2}
+                  maxLength={100}
                 />
                 <label htmlFor="name" className="form-label">Your Name</label>
               </div>
@@ -197,9 +203,11 @@ export default function Contact() {
                   value={formData.message}
                   onChange={handleChange}
                   required
+                  minLength={10}
+                  maxLength={2000}
                   style={{ resize: 'none' }}
                 />
-                <label htmlFor="message" className="form-label">Message Details</label>
+                <label htmlFor="message" className="form-label">Message Details (min 10 characters)</label>
               </div>
 
               {/* Status messages feedback loop */}
