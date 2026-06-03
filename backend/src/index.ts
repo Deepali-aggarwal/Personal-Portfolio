@@ -1,6 +1,7 @@
 import express from 'express';
 import cors from 'cors';
 import dotenv from 'dotenv';
+import connectDB from './config/db';
 import contactRoutes from './routes/contact';
 import { errorHandler } from './middleware/errorHandler';
 
@@ -70,10 +71,14 @@ app.use((req, res, next) => {
 app.use(errorHandler);
 
 // Start Server
-app.listen(PORT, () => {
-  console.log(`========================================`);
-  console.log(`🚀 Portfolio backend server running!`);
-  console.log(`📡 URL: http://localhost:${PORT}`);
-  console.log(`🏥 Health check: http://localhost:${PORT}/api/health`);
-  console.log(`========================================`);
-});
+const start = async () => {
+  await connectDB();
+  app.listen(PORT, () => {
+    console.log(`========================================`);
+    console.log(`🚀 Portfolio backend server running!`);
+    console.log(`📡 URL: http://localhost:${PORT}`);
+    console.log(`🏥 Health check: http://localhost:${PORT}/api/health`);
+    console.log(`========================================`);
+  });
+};
+start();
