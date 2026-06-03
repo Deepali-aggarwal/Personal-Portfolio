@@ -31,7 +31,20 @@ app.use(cors({
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-// Root health check endpoint
+// Root endpoint
+app.get('/', (req, res) => {
+  res.status(200).json({
+    success: true,
+    message: 'Portfolio Backend API',
+    version: '1.0.0',
+    endpoints: {
+      health: '/api/health',
+      contact: '/api/contact'
+    }
+  });
+});
+
+// Health check endpoint
 app.get('/api/health', (req, res) => {
   res.status(200).json({
     success: true,
