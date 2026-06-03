@@ -1,0 +1,25 @@
+{
+  "name": "frontend",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "parcel index.html --open",
+    "build": "parcel build index.html",
+    "preview": "npx serve dist"
+  },
+  "dependencies": {
+    "gsap": "^3.15.0",
+    "lucide-react": "^1.17.0",
+    "react": "^19.2.6",
+    "react-dom": "^19.2.6"
+  },
+  "devDependencies": {
+    "@types/node": "^24.12.3",
+    "@types/react": "^19.2.14",
+    "@types/react-dom": "^19.2.3",
+    "parcel": "^2.14.4",
+    "process": "^0.11.10",
+    "typescript": "~6.0.2"
+  }
+}
